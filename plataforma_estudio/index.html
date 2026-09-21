@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Preparación PGN - Profesional Universitario 3PU-15</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- SIDEBAR DE NAVEGACIÓN -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-badge">⚖️ PGN • Convocatoria 121-2026</div>
+      <h1>Preparación Concurso de Méritos</h1>
+      <p>Profesional Universitario (3PU - 15)<br><strong>DAEADI</strong> • Conocimiento e Innovación</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Navegación Principal</div>
+      <div class="nav-item active" data-view="dashboard">
+        <span class="nav-icon">📊</span>
+        <span>Panel de Control</span>
+      </div>
+      <div class="nav-item" data-view="units">
+        <span class="nav-icon">📚</span>
+        <span>Unidades Didácticas</span>
+        <span class="badge-counter" id="units-progress-badge">0/16</span>
+      </div>
+      
+      <div class="nav-section-title">Simuladores Oficiales</div>
+      <div class="nav-item" data-view="mock-knowledge">
+        <span class="nav-icon">⏱️</span>
+        <span>Simulacro Conocimientos</span>
+        <span class="badge-counter" style="color: var(--accent-red);">70%</span>
+      </div>
+      <div class="nav-item" data-view="mock-behavioral">
+        <span class="nav-icon">🧠</span>
+        <span>Prueba Comportamental</span>
+        <span class="badge-counter" style="color: #60a5fa;">20%</span>
+      </div>
+
+      <div class="nav-section-title">Estrategia & Recursos</div>
+      <div class="nav-item" data-view="guide">
+        <span class="nav-icon">🎯</span>
+        <span>Técnicas de Juicio Situacional</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="progress-overall-box">
+        <div class="header-text">
+          <span>Progreso General</span>
+          <span id="overall-progress-text">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="overall-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-info">
+        <h2 id="topbar-title">Panel de Control de Preparación</h2>
+        <p id="topbar-subtitle">Concurso Abierto de Méritos de la Procuraduría General de la Nación</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary" id="btn-reset-progress">↺ Reiniciar Datos</button>
+        <button class="btn btn-primary" id="btn-quick-exam">⚡ Iniciar Simulacro</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- VISTA 1: DASHBOARD -->
+      <section id="view-dashboard" class="view-panel active">
+        <div class="hero-card">
+          <div class="hero-tag">Convocatoria Oficial 121-2026 • Resolución 212 de 2026</div>
+          <h2>Plan de Entrenamiento Intensivo para el Cargo Profesional Universitario 3PU-15</h2>
+          <p>
+            Entrénate de manera progresiva (de menos a más) en los 14 ejes temáticos esenciales exigidos para la 
+            <strong>Dirección de Apoyo Estratégico, Análisis de Datos de Información (DAEADI)</strong>. Domina las normas del Estado, 
+            el funcionamiento interno de la PGN y la ingeniería de datos con casos reales de juicio situacional.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="app.navigateTo('units')">🚀 Comenzar con la Unidad 1</button>
+            <button class="btn btn-secondary" onclick="app.navigateTo('mock-knowledge')">📝 Evaluar Nivel en Simulador</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-icon gold">⚖️</div>
+            <div class="stat-content">
+              <div class="val">70%</div>
+              <div class="lbl">Conocimientos (Eliminatoria &ge;65)</div>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon blue">🧠</div>
+            <div class="stat-content">
+              <div class="val">20%</div>
+              <div class="lbl">Competencias Comportamentales</div>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon green">📚</div>
+            <div class="stat-content">
+              <div class="val" id="stat-completed-units">0 / 16</div>
+              <div class="lbl">Unidades Didácticas Aprobadas</div>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon purple">🎯</div>
+            <div class="stat-content">
+              <div class="val" id="stat-best-score">-- / 100</div>
+              <div class="lbl">Mejor Puntaje en Simulacro</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Fases Metodológicas de Aprendizaje</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px;">
+              <h4 style="color: var(--accent-gold); margin-bottom: 6px;">Fase 1: Cimientos del Estado</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Estructura del poder público, Constitución Política, funciones de la PGN (Decreto 262/2000) y Código General Disciplinario.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px;">
+              <h4 style="color: #60a5fa; margin-bottom: 6px;">Fase 2: Gestión Institucional</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Trámite de PQRS en CPACA, Ley General de Archivos (TRD), Modelo MIPG (Gestión del conocimiento) y correspondencia oficial.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px;">
+              <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">Fase 3: Eje Tecnológico y Analítica</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Contratación estatal en TIC, SQL y modelado relacional, estadística descriptiva, BI/ETL, seguridad ISO 27001 y Habeas Data.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px;">
+              <h4 style="color: var(--accent-green); margin-bottom: 6px;">Fase 4: Simulación y Descarte</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Entrenamiento bajo presión cronometrada con reactivos de juicio situacional (SJT), justificación técnica y análisis de distractores.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 2: LISTA DE UNIDADES DIDÁCTICAS -->
+      <section id="view-units" class="view-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h2 style="color: #fff; font-size: 1.5rem;">Unidades Didácticas de Estudio</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Organizadas progresivamente de menor a mayor complejidad con sus respectivos quizzes parciales.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <select id="filter-level" class="btn btn-secondary" style="padding: 8px 12px;">
+              <option value="all">Todos los Niveles</option>
+              <option value="Básico">Nivel Básico</option>
+              <option value="Intermedio">Nivel Intermedio</option>
+              <option value="Avanzado">Nivel Avanzado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="units-grid" id="units-container">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+      </section>
+
+      <!-- VISTA 3: DETALLE DE UNIDAD DIDÁCTICA Y EVALUACIÓN -->
+      <section id="view-unit-detail" class="view-panel">
+        <div class="unit-detail-container">
+          <div class="unit-detail-header">
+            <button class="btn btn-secondary back-btn" onclick="app.navigateTo('units')">← Volver a Unidades</button>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="unit-num" id="detail-unit-num">Unidad 01</span>
+              <span class="unit-level" id="detail-unit-level">Básico</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);" id="detail-unit-duration">⏱️ 45 min</span>
+            </div>
+            <h2 id="detail-unit-title">Título de la Unidad</h2>
+            <p id="detail-unit-summary" style="color: var(--text-secondary); font-size: 1rem; margin-top: 8px;"></p>
+          </div>
+
+          <!-- NAVEGACIÓN POR PESTAÑAS DENTRO DE LA UNIDAD -->
+          <div class="unit-tabs-nav">
+            <button class="unit-tab-btn active" id="tab-btn-modules" onclick="app.switchUnitTab('modules')">📚 Módulos Teóricos & Mecánica Operativa</button>
+            <button class="unit-tab-btn" id="tab-btn-sources" onclick="app.switchUnitTab('sources')">🏛️ 10+ Fuentes e Investigaciones Oficiales</button>
+            <button class="unit-tab-btn" id="tab-btn-glossary" onclick="app.switchUnitTab('glossary')">📖 Glosario Jurídico & Técnico</button>
+            <button class="unit-tab-btn" id="tab-btn-exam" onclick="app.switchUnitTab('exam')">📝 Evaluación de Juicio Situacional (100% Exigido)</button>
+          </div>
+
+          <!-- PESTAÑA 1: MÓDULOS DIDÁCTICOS Y TEORÍA PROFUNDA -->
+          <div id="unit-tab-modules" class="unit-tab-content active">
+            <div class="normativa-box">
+              <h4>📜 Marco Constitucional y Normativo Primario</h4>
+              <ul id="detail-unit-normativa"></ul>
+            </div>
+
+            <div id="detail-unit-deep-modules">
+              <!-- Módulos teóricos detallados renderizados dinámicamente -->
+            </div>
+
+            <div class="scenario-callout">
+              <h4>🏢 Aplicación y Flujo Práctico en la DAEADI (Procuraduría)</h4>
+              <p id="detail-unit-example" style="color: #e2e8f0; font-size: 0.92rem;"></p>
+            </div>
+
+            <div class="exam-tip-callout">
+              <h4>⚡ Advertencia de Examen: Distractores y Faltas Típicas</h4>
+              <p id="detail-unit-tip" style="color: #fed7aa; font-size: 0.92rem;"></p>
+            </div>
+
+            <div style="text-align: center; margin: 32px 0 16px 0;">
+              <button class="btn btn-primary" onclick="app.switchUnitTab('exam')" style="padding: 12px 28px; font-size: 1rem;">
+                🚀 Proceder a la Evaluación Parcial de la Unidad →
+              </button>
+            </div>
+          </div>
+
+          <!-- PESTAÑA 2: 10+ FUENTES E INVESTIGACIONES OFICIALES -->
+          <div id="unit-tab-sources" class="unit-tab-content">
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #fff; font-size: 1.25rem;">Fuentes Jurídicas, Doctrinales y Jurisprudenciales Oficiales</h3>
+              <p style="color: var(--text-secondary); font-size: 0.88rem;">
+                Investigación exhaustiva de base: Leyes, decretos, sentencias vinculantes de la Corte Constitucional y manuales de la Función Pública aplicables a esta unidad.
+              </p>
+            </div>
+            <div class="research-sources-grid" id="detail-unit-sources-container"></div>
+          </div>
+
+          <!-- PESTAÑA 3: GLOSARIO JURÍDICO Y TÉCNICO -->
+          <div id="unit-tab-glossary" class="unit-tab-content">
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #fff; font-size: 1.25rem;">Glosario Especializado para el Concurso</h3>
+              <p style="color: var(--text-secondary); font-size: 0.88rem;">
+                Términos clave y definiciones técnicas que debes dominar para interpretar las preguntas de juicio situacional sin equivocarte.
+              </p>
+            </div>
+            <div class="glossary-grid" id="detail-unit-glossary-container"></div>
+          </div>
+
+          <!-- PESTAÑA 4: EVALUACIÓN DE JUICIO SITUACIONAL (FLUJO CONTINUO Y 100% EXIGIDO) -->
+          <div id="unit-tab-exam" class="unit-tab-content">
+            <div class="quiz-wrapper" id="unit-exam-container">
+              <div class="quiz-header">
+                <div>
+                  <h3 id="unit-exam-title">Evaluación de Juicio Situacional</h3>
+                  <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                    Pregunta <span id="quiz-q-index">1</span> de <span id="quiz-q-total">8</span> • <strong style="color: var(--accent-gold);">Regla: 100% de aciertos para desbloquear la siguiente unidad</strong>
+                  </p>
+                </div>
+                <div id="quiz-status-pill" class="badge-counter">Evaluación en curso</div>
+              </div>
+
+              <!-- CONTENEDOR DE PREGUNTA DURANTE EL EXAMEN -->
+              <div id="unit-exam-active-card">
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                  <span id="quiz-q-diff-badge" class="badge-difficulty badge-diff-media">Dificultad: Media</span>
+                  <span id="quiz-q-type-badge" class="badge-qtype">Juicio Situacional (SJT)</span>
+                </div>
+
+                <div class="quiz-case-box">
+                  <strong>Caso Laboral Hipotético (Contexto PGN / DAEADI):</strong>
+                  <div id="quiz-case-text"></div>
+                </div>
+
+                <div class="quiz-question-text" id="quiz-question-text"></div>
+
+                <div class="options-list" id="quiz-options-list"></div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+                  <button class="btn btn-secondary" id="btn-prev-quiz-q" disabled>← Pregunta Anterior</button>
+                  <button class="btn btn-primary" id="btn-next-quiz-q">Siguiente Pregunta →</button>
+                </div>
+              </div>
+
+              <!-- DIAGNÓSTICO FINAL DEL EXAMEN DE UNIDAD -->
+              <div id="unit-exam-diagnostic-card" style="display: none;">
+                <div id="unit-exam-score-banner" class="score-banner-100 failed">
+                  <h2 id="unit-diagnostic-title" style="font-size: 1.6rem; margin-bottom: 8px;">Resultado: 80% (7/8 Aciertos)</h2>
+                  <p id="unit-diagnostic-message" style="font-size: 0.95rem; max-width: 700px; margin: 0 auto;"></p>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 14px; margin-bottom: 28px;">
+                  <button class="btn btn-primary" id="btn-retry-unit-exam" onclick="app.retryUnitExam()">
+                    🔄 Repasar Fallas y Reintentar Examen (Meta: 100%)
+                  </button>
+                  <button class="btn btn-secondary" onclick="app.switchUnitTab('modules')">
+                    📚 Volver a Módulos Teóricos
+                  </button>
+                </div>
+
+                <h3 style="color: #fff; margin-bottom: 16px; font-size: 1.15rem;">Análisis Detallado de Preguntas y Justificación Jurídica</h3>
+                <div id="unit-diagnostic-items-container"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VISTA 4: SIMULACRO OFICIAL DE CONOCIMIENTOS (70% ELIMINATORIO) -->
+      <section id="view-mock-knowledge" class="view-panel">
+        <div class="exam-runner">
+          <div class="exam-nav-bar">
+            <div>
+              <h2 style="color: #fff; font-size: 1.4rem;">Simulacro Oficial de Conocimientos Funcionales</h2>
+              <span class="hero-tag" style="margin-top: 4px;">Ponderación: 70% • Carácter: ELIMINATORIA (Mínimo 65 / 100 pts)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div class="exam-timer" id="mock-timer">⏱️ 45:00</div>
+              <div class="exam-progress-counter" id="mock-counter">Pregunta 1 de 15</div>
+            </div>
+          </div>
+
+          <div id="mock-question-container">
+            <div class="quiz-case-box">
+              <strong>Caso de Juicio Situacional (Contexto Procuraduría):</strong>
+              <div id="mock-case-text"></div>
+            </div>
+
+            <div class="quiz-question-text" id="mock-question-text"></div>
+
+            <div class="options-list" id="mock-options-list"></div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+              <button class="btn btn-secondary" id="btn-mock-prev" disabled>← Anterior</button>
+              <button class="btn btn-primary" id="btn-mock-next">Siguiente →</button>
+            </div>
+          </div>
+
+          <!-- PANTALLA DE RESULTADOS DEL SIMULACRO -->
+          <div id="mock-results-container" class="exam-result-box" style="display: none;">
+            <div id="mock-result-badge" class="result-badge-large passed">85</div>
+            <h3 id="mock-result-title" class="result-title">¡Aprobaste la Prueba Eliminatoria!</h3>
+            <p id="mock-result-desc" class="result-desc"></p>
+
+            <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+              <button class="btn btn-primary" onclick="app.startMockKnowledge()">↺ Reintentar Simulacro</button>
+              <button class="btn btn-secondary" onclick="app.reviewMockAnswers()">🔍 Revisar Respuestas y Justificaciones</button>
+              <button class="btn btn-secondary" onclick="app.navigateTo('dashboard')">🏠 Ir al Inicio</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 5: SIMULACRO DE COMPETENCIAS COMPORTAMENTALES (20%) -->
+      <section id="view-mock-behavioral" class="view-panel">
+        <div class="exam-runner">
+          <div class="exam-nav-bar">
+            <div>
+              <h2 style="color: #fff; font-size: 1.4rem;">Simulacro de Competencias Comportamentales</h2>
+              <span class="hero-tag" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">
+                Ponderación: 20% • Carácter: Clasificatoria
+              </span>
+            </div>
+            <div class="exam-progress-counter" id="behavioral-counter">Caso 1 de 6</div>
+          </div>
+
+          <div id="behavioral-question-container">
+            <div style="margin-bottom: 12px;">
+              <span class="brand-badge" id="behavioral-competency-pill">Competencia: Pensamiento Conceptual</span>
+            </div>
+            <div class="quiz-case-box">
+              <strong>Escenario Comportamental Laboral:</strong>
+              <div id="behavioral-case-text"></div>
+            </div>
+
+            <div class="quiz-question-text" id="behavioral-question-text"></div>
+
+            <div class="options-list" id="behavioral-options-list"></div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+              <button class="btn btn-secondary" id="btn-behavioral-prev" disabled>← Anterior</button>
+              <button class="btn btn-primary" id="btn-behavioral-next">Siguiente →</button>
+            </div>
+          </div>
+
+          <div id="behavioral-results-container" class="exam-result-box" style="display: none;">
+            <div class="result-badge-large passed" id="behavioral-score-badge">90</div>
+            <h3 class="result-title">Perfil Comportamental Completado</h3>
+            <p class="result-desc" id="behavioral-result-desc">Tus respuestas demuestran alta afinidad con el nivel de profesional exigido por la Procuraduría.</p>
+            <button class="btn btn-primary" onclick="app.startMockBehavioral()">↺ Reintentar Prueba Comportamental</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 6: GUÍA DE TÉCNICAS DE JUICIO SITUACIONAL -->
+      <section id="view-guide" class="view-panel">
+        <div class="unit-detail-container">
+          <h2 style="color: #fff; margin-bottom: 16px; font-size: 1.6rem;">Técnicas Maestras para Aprobar las Pruebas de Juicio Situacional (SJT)</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 24px;">
+            Las pruebas de la Procuraduría evalúan el <strong>criterio legal, funcional y procedimental</strong> del aspirante en situaciones complejas del servicio público.
+          </p>
+
+          <div class="keypoint-item">
+            <h4>1. Adopta Siempre el Rol del Nivel Profesional Universitario</h4>
+            <p>
+              El Profesional Universitario apoya técnicamente, formula análisis, elabora proyectos de resolución, diseña modelos y advierte irregularidades. 
+              <strong>No es el ordenador del gasto, no es el juez de juzgamiento, ni puede revocar actos administrativos por su cuenta.</strong> 
+              Descarta cualquier opción donde el profesional asuma competencias que legalmente corresponden al Procurador General o al Comité de Contratación.
+            </p>
+          </div>
+
+          <div class="keypoint-item">
+            <h4>2. La Regla de los Tres Criterios de Descarte</h4>
+            <p>
+              En cada pregunta de 3 opciones (A, B, C):<br>
+              • <strong>Opción Informal/Negligente (Descartar):</strong> Sugiere resolver el problema "de palabra", "ignorar el error temporalmente" o "hacer favores personales".<br>
+              • <strong>Opción Extralimitada/Arbitraria (Descartar):</strong> El profesional impone sanciones, suspende contratos o salta el debido proceso sin justificación reglada.<br>
+              • <strong>Opción Institucional y Técnica (Correcta):</strong> Se fundamenta en el marco legal vigente, documenta formalmente la situación, propone una solución técnica fundada y la eleva por el conducto regular.
+            </p>
+          </div>
+
+          <div class="keypoint-item">
+            <h4>3. Principio de Legalidad y Reserva Legal</h4>
+            <p>
+              En la DAEADI se gestionan antecedentes e inhabilidades. Toda extracción masiva de datos, divulgación de antecedentes o modificación en bases de datos que no esté expresamente respaldada por la ley o una orden judicial legítima, constituye falta disciplinaria.
+            </p>
+          </div>
+
+          <div class="keypoint-item">
+            <h4>4. Los Términos Legales son Perentorios</h4>
+            <p>
+              En solicitudes ciudadanas (CPACA): 10 días para información y copias; 15 días para quejas y peticiones generales; 30 días para consultas doctrinales. Cualquier omisión en responder o prorrogar oportunamente genera silencio administrativo y sanción disciplinaria.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

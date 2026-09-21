@@ -1,0 +1,19 @@
+# Archivos temporales y de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+
+# Entornos y dependencias
+__pycache__/
+*.py[cod]
+.env
+.venv/
+node_modules/
+
+# Editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
